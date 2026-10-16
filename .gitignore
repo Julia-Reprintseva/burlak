@@ -1,7 +1,1 @@
 .DS_Store
-# файлы есть на компьютере (их создают сборщики или они пригодятся позже), но сайт их не использует
-assets/img/certs/
-assets/img/draw/scribble-1.svg
-assets/img/draw/scribble-2.svg
-assets/img/draw/swallow.svg
-assets/img/photos/selfie-bw.webp
