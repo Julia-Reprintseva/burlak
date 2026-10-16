@@ -4,7 +4,7 @@
 
 @font-face{font-family:"Old Standard TT";font-weight:400;font-display:swap;src:url(../fonts/OldStandardTT-Regular.woff) format("woff")}
 @font-face{font-family:"Old Standard TT";font-weight:700;font-display:swap;src:url(../fonts/OldStandardTT-Bold.woff) format("woff")}
-@font-face{font-family:"Oswald";font-weight:400;font-display:swap;src:url(../fonts/Oswald-Regular.woff) format("woff")}
+@font-face{font-family:"Oswald";font-weight:300 400;font-display:swap;src:url(../fonts/Oswald-Light.woff) format("woff")}  /* у дизайнера в макете — Oswald Light */
 @font-face{font-family:"Roboto Condensed";font-weight:700;font-stretch:75% 100%;font-display:swap;src:url(../fonts/RobotoCondensed-Bold.woff) format("woff")}
 @font-face{font-family:"Caveat";font-weight:400;font-display:swap;src:url(../fonts/Caveat-400.woff) format("woff")}
 
@@ -197,4 +197,16 @@ a{color:inherit}
 /* экраны встык: картинки с дробной высотой иначе дают щель в долю пикселя между экранами */
 @media (min-width:1024px){
   .screen+.screen{margin-top:-2px}
+}
+
+/* ответы в «Частых вопросах»: подзаголовки и список методов */
+.faq-ui .faq-sub{font-weight:700;margin-top:1.1em}
+.faq-ui .faq-sub+p{margin-top:.35em}
+.faq-ui .faq-methods{list-style:none;margin:.4em 0 0;padding:0}
+.faq-ui .faq-methods li{position:relative;padding-left:1.1em;margin-top:.2em}
+.faq-ui .faq-methods li::before{content:"—";position:absolute;left:0;color:var(--red)}
+/* компьютер: открытый ответ показывается целиком, экран удлиняется вниз (site.js) */
+@media (min-width:1024px){
+  .faq-ui{height:auto!important;overflow:visible!important}
+  #faq{transition:padding-bottom .25s ease}
 }

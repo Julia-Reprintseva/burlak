@@ -78,3 +78,20 @@
   window.addEventListener('scroll', update, { passive: true });
   update();
 })();
+
+// «Частые вопросы» на компьютере: если раскрытый ответ длиннее экрана из макета — экран вытягивается вниз,
+// под картинкой продолжается кремовый фон, следующий экран сдвигается.
+(function () {
+  var sec = document.getElementById('faq');
+  var box = sec && sec.querySelector('.faq-ui');
+  var art = sec && sec.querySelector('.art');
+  if (!box || !art) return;
+  function fit() {
+    if (!window.matchMedia('(min-width: 1024px)').matches) { sec.style.paddingBottom = ''; return; }
+    var over = box.getBoundingClientRect().bottom - art.getBoundingClientRect().bottom + 40;
+    sec.style.paddingBottom = over > 0 ? over + 'px' : '';
+  }
+  box.querySelectorAll('details').forEach(function (d) { d.addEventListener('toggle', fit); });
+  window.addEventListener('resize', fit);
+  fit();
+})();
