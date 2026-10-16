@@ -32,9 +32,10 @@ a{color:inherit}
 .divider{display:block;position:relative;z-index:3;width:100%;height:auto;margin-top:calc(var(--u) * -45)}
 .divider a:hover text{fill:#f2c14e}
 .art .about-fix{font:400 25.5px var(--serif);letter-spacing:1.17px;fill:#111310}
-.art .hit{transition:fill .3s ease}
-.art a:hover .hit{fill:rgba(197,98,70,.06)}
-.art a:focus-visible .hit{fill:rgba(197,98,70,.1)}
+.art .hit{transition:fill .25s ease}
+/* подсветка одинаковая на любом фоне — бумаге, фото, голубом: тёмная полупрозрачная плашка */
+.art a:hover .hit{fill:rgba(25,20,21,.13)}
+.art a:focus-visible .hit{fill:rgba(25,20,21,.18)}
 .m-only{display:none}
 
 /* живой текст поверх экранов 2–9 (из картинки он убран, см. strip_print_text в build_design.py).
@@ -66,6 +67,7 @@ a{color:inherit}
 .faq-ui summary::after{content:"+";font:400 calc(var(--u) * 44)/1 var(--serif)}
 .faq-ui details[open] summary::after{content:"–"}
 .faq-ui p{margin-top:calc(var(--u) * 18);line-height:1.45}
+.faq-ui details>:last-child{margin-bottom:calc(var(--u) * 22)}   /* воздух после ответа перед следующим вопросом */
 
 /* форма поверх экрана 9: поля по рамкам из макета */
 .form-ui{position:absolute;inset:0;pointer-events:none}
@@ -164,6 +166,7 @@ a{color:inherit}
   .faq-ui summary{font-size:23px}
   .faq-ui summary::after{font-size:32px}
   .faq-ui p{margin-top:12px}
+  .faq-ui details>:last-child{margin-bottom:16px}
   #faq .m-block:last-child{margin-top:30px}
   .form-ui{display:flex;flex-direction:column;gap:14px}
   .form-ui input,.form-ui textarea,.form-ui button{position:static;width:100%;height:auto;font-size:18px}
@@ -210,3 +213,6 @@ a{color:inherit}
   .faq-ui{height:auto!important;overflow:visible!important}
   #faq{transition:padding-bottom .25s ease}
 }
+
+/* меню поверх тёмного фото (экран «Обо мне») — светлая обводка букв */
+.art .head-halo text{stroke:#f8f5ee;stroke-width:3.5px;stroke-linejoin:round;paint-order:stroke}
