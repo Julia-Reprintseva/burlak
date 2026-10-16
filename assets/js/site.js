@@ -13,6 +13,8 @@
   }
 
   toggle.addEventListener('click', function () { setOpen(!root.classList.contains('menu-open')); });
+  // на телефоне меню открывают три линии в шапке каждого раздела
+  document.querySelectorAll('.m-burger').forEach(function (b) { b.addEventListener('click', function () { setOpen(true); }); });
   // пока меню открыто, прокрутка страницы заблокирована: сначала закрываем, потом едем к разделу
   menu.addEventListener('click', function (e) {
     var link = e.target.closest('a[href^="#"]');
