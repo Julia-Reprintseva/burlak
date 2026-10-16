@@ -32,7 +32,9 @@ a{color:inherit}
 .divider{display:block;position:relative;z-index:3;width:100%;height:auto;margin-top:calc(var(--u) * -45)}
 .divider a:hover text{fill:#f2c14e}
 .art .about-fix{font:400 25.5px var(--serif);letter-spacing:1.17px;fill:#111310}
-.art a:hover .hit,.art a:focus-visible .hit{fill:rgba(197,98,70,.12)}
+.art .hit{transition:fill .3s ease}
+.art a:hover .hit{fill:rgba(197,98,70,.06)}
+.art a:focus-visible .hit{fill:rgba(197,98,70,.1)}
 .m-only{display:none}
 
 /* живой текст поверх экранов 2–9 (из картинки он убран, см. strip_print_text в build_design.py).
