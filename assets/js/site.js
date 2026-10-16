@@ -45,12 +45,16 @@
   });
 })();
 
-// Запись на консультацию: сервера у сайта нет, поэтому форма готовит письмо Екатерине в почтовой программе.
+// Запись на консультацию: заявка уходит письмом Екатерине через Formspree (как форма на reprintseva.pro).
+// FORM_ENDPOINT — адрес формы в Formspree (https://formspree.io/f/…); пока он пустой, форма открывает
+// готовое письмо в почтовой программе.
 (function () {
   var form = document.getElementById('signup');
   if (!form) return;
   var status = form.querySelector('.f-status');
+  var send = form.querySelector('.f-send');
   var TO = 'ekaterinaburlak@gmail.com';
+  var FORM_ENDPOINT = '';
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -62,11 +66,28 @@
       bad[0].focus();
       return;
     }
-    var body = 'Имя: ' + name.value.trim() + '\nПочта: ' + email.value.trim() +
-      (form.comment.value.trim() ? '\n\n' + form.comment.value.trim() : '');
-    window.location.href = 'mailto:' + TO + '?subject=' + encodeURIComponent('Запись на консультацию') +
-      '&body=' + encodeURIComponent(body);
-    status.textContent = 'Открываем почту с готовым письмом. Если не открылась — напишите на ' + TO;
+    var data = { 'Имя': name.value.trim(), 'Почта': email.value.trim(), 'Комментарий': form.comment.value.trim(),
+                 _replyto: email.value.trim(), _subject: 'Запись на консультацию — ' + name.value.trim() };
+    if (!FORM_ENDPOINT) {
+      var body = 'Имя: ' + data['Имя'] + '\nПочта: ' + data['Почта'] + (data['Комментарий'] ? '\n\n' + data['Комментарий'] : '');
+      window.location.href = 'mailto:' + TO + '?subject=' + encodeURIComponent('Запись на консультацию') +
+        '&body=' + encodeURIComponent(body);
+      status.textContent = 'Открываем почту с готовым письмом. Если не открылась — напишите на ' + TO;
+      return;
+    }
+    send.disabled = true;
+    status.textContent = 'Отправляем…';
+    fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                           body: JSON.stringify(data) })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        form.reset();
+        status.textContent = 'Спасибо! Заявка отправлена — Екатерина ответит вам на почту.';
+      })
+      .catch(function () {
+        status.textContent = 'Не получилось отправить. Напишите, пожалуйста, на ' + TO + ' или в Telegram.';
+      })
+      .then(function () { send.disabled = false; });
   });
 })();
 

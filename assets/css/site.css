@@ -17,6 +17,7 @@
 html{scroll-behavior:smooth;overflow-x:clip}
 body{background:var(--cream) url(../img/paper/cream.webp) 0 0/800px;color:var(--ink);font:19px/1.55 var(--serif)}
 img{max-width:100%}
+svg[width="0"]{position:absolute;width:0;height:0;overflow:hidden}   /* скрытые библиотеки рисунков не раздвигают страницу */
 a{color:inherit}
 :focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -94,8 +95,9 @@ a{color:inherit}
 .menu-open .menu-toggle i:nth-child(2){opacity:0}
 .menu-open .menu-toggle i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .menu{position:fixed;inset:0;z-index:40;background:var(--cream) url(../img/paper/cream.webp) 0 0/800px;display:flex;flex-direction:column;justify-content:center;padding:40px 32px;gap:4px;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+.menu{overflow:hidden}   /* длинные пункты (до сжатия по ширине) иначе раздвигают страницу на телефоне */
 .menu-open .menu{opacity:1;visibility:visible}
-.menu a{font:700 clamp(36px,7vw,68px)/1.15 var(--serif);text-transform:uppercase;text-decoration:none;transform:scaleX(.75);transform-origin:left;white-space:nowrap}
+.menu a{font:700 clamp(32px,9vw,68px)/1.15 var(--serif);text-transform:uppercase;text-decoration:none;transform:scaleX(.75);transform-origin:left;white-space:nowrap}
 .menu a:hover{color:var(--red)}
 .menu .menu-note{font:400 30px var(--hand);margin-top:24px;color:var(--muted)}
 .menu-open{overflow:hidden}
@@ -216,3 +218,106 @@ a{color:inherit}
 
 /* меню поверх тёмного фото (экран «Обо мне») — светлая обводка букв */
 .art .head-halo text{stroke:#f8f5ee;stroke-width:3.5px;stroke-linejoin:round;paint-order:stroke}
+
+/* ===== телефон по эскизу дизайнера (16.10): каждый раздел — «карточка» с шапкой, коллаж из фото и бумаги ===== */
+.m-logo{display:inline-block;text-decoration:none;font:700 17px/1.05 var(--serif);letter-spacing:.05em;text-transform:uppercase;margin-bottom:26px}
+.m-logo b{font-weight:700}
+.m-logo small{display:block;font:400 11px var(--serif);letter-spacing:.12em;margin-top:6px;color:var(--muted)}
+.m-ico{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+@media (max-width:1023px){
+  body{font-size:16px}
+  .screen:not(#top){padding:34px 0 40px}
+  #requests-2{padding-top:34px}
+  .m-block{padding:0 20px}
+  .title{font-size:clamp(46px,13.5vw,96px);margin-bottom:18px}
+  .lead{font-size:17px;line-height:1.45}
+  .m-block>p{font-size:16px;line-height:1.55}
+  .m-block>p+p{margin-top:12px}
+  .btn{padding:13px 26px;font-size:17px;gap:18px}
+  .btn-note{font-size:16px;margin-top:10px}
+
+  /* фото: рваный край + обрывки цветной бумаги за ним */
+  .pic{position:relative;isolation:isolate;margin:30px 0 14px}
+  .pic.bleed-r{margin-right:-20px}
+  .pic.bleed-l{margin-left:-20px}
+  .pic.bleed{margin-left:-20px;margin-right:-20px}
+  .pic::before,.pic::after{content:"";position:absolute;z-index:-1;clip-path:polygon(0 4%,9% 0,22% 3%,37% 0,52% 4%,66% 1%,81% 4%,100% 0,97% 26%,100% 51%,96% 76%,100% 100%,84% 96%,70% 100%,55% 96%,40% 100%,25% 97%,11% 100%,0 96%,3% 71%,0 47%,2% 23%)}
+  .pic::before{left:-12px;top:-14px;width:46%;height:38%;transform:rotate(-5deg)}
+  .pic::after{right:-10px;bottom:-12px;width:42%;height:30%;transform:rotate(4deg)}
+  .pic.bleed-r::after,.pic.bleed::after{right:0}
+  .pic.bleed-l::before,.pic.bleed::before{left:0}
+  .acc-red-blue::before,.acc-yellow-red::after{background:var(--red) url(../img/paper/red.webp) center/cover}
+  .acc-red-blue::after,.acc-blue-yellow::before{background:var(--blue) url(../img/paper/blue.webp) center/cover}
+  .acc-yellow-red::before,.acc-blue-yellow::after{background:var(--yellow) url(../img/paper/yellow.webp) center/cover}
+
+  /* записки — рукописным, как в макете */
+  .note{right:6px;bottom:-22px;padding:16px 20px 14px;font:400 clamp(24px,7.2vw,34px)/1.02 var(--hand);transform:rotate(-8deg)}
+  .bleed-r .note,.bleed .note{right:14px}
+  .hand-note{font:400 clamp(22px,6.4vw,30px)/1.1 var(--hand);transform:rotate(-2deg);padding:16px 20px}
+
+  /* «С чем я работаю»: фото слева, темы справа */
+  .split{display:grid;grid-template-columns:44% 1fr;gap:16px;align-items:start;margin-top:22px}
+  .split .pic{margin-top:6px}
+  .topics.compact li{display:block;margin:0 0 18px}
+  .topics.compact .icon{width:46px;float:left;margin:0 8px 2px 0}
+  .topics.compact h3{font-size:16px;line-height:1.15;min-height:40px}
+  .topics.compact p{clear:left;font-size:13.5px;line-height:1.4}
+  .topics li{gap:14px;margin:20px 0}
+  .topics .icon{width:62px}
+  .topics h3{font-size:18px}
+  .topics p{font-size:15px}
+
+  /* «Как я работаю»: методы 2×2, значок слева */
+  .methods.compact{gap:16px 12px}
+  .methods.compact li{flex-direction:row;align-items:flex-start;gap:8px}
+  .methods.compact .icon{width:52px}
+  .methods.compact p{font-size:14px;line-height:1.3}
+  .m-block mark{background:linear-gradient(transparent 12%,rgba(252,204,111,.75) 12%,rgba(252,204,111,.75) 88%,transparent 88%);color:inherit;padding:0 .1em}
+
+  /* «Образование»: фото справа, список обтекает */
+  .pic.side{float:right;width:44%;margin:4px -20px 10px 14px}
+  .timeline li{display:flow-root;margin:14px 0;padding-left:12px}
+  .timeline .y{font-size:16px}
+  .timeline h3{font-size:16px}
+  .timeline p{font-size:14px}
+  #education .m-block::after{content:"";display:block;clear:both}
+
+  /* «Частые вопросы»: фото в углу, вопросы в рамках */
+  .faq-head{display:grid;grid-template-columns:1fr 46%;align-items:end;gap:8px}
+  .faq-head .title{margin:0}
+  .faq-head .pic{margin:0 -20px 0 0}
+  #faq .hand-note{position:relative;z-index:2;margin:14px 30px 22px 0}
+  .faq-ui details{border:1.5px solid var(--ink);border-radius:8px;padding:12px 16px;margin-bottom:10px;background:rgba(255,255,255,.35)}
+  .faq-ui details:last-child{border-bottom:1.5px solid var(--ink)}
+  .faq-ui summary{font-size:18px}
+  .faq-ui summary::after{font-size:26px}
+  .faq-ui details>:last-child{margin-bottom:6px}
+  #faq .m-block:last-child{margin-top:22px}
+
+  /* «Запись»: фото, поля, почта со значком */
+  #contact .pic{margin-bottom:34px}
+  .form-ui input,.form-ui textarea{border-width:1.5px;padding:12px 16px;font-size:16px}
+  .m-mail{display:flex;align-items:center;gap:12px;font-size:17px;margin-top:16px}
+  .m-mail a{text-decoration:none;border-bottom:1px solid rgba(19,19,19,.35)}
+
+  /* первый экран: заголовок поверх коллажа, кнопка на фото */
+  .m-head{padding:24px 20px 0}
+  .m-title{position:relative;z-index:2;padding-top:30px;font-size:clamp(58px,17vw,120px)}
+  .m-underline{position:relative;z-index:2;margin:12px 0 0 20px}
+  .hero-mobile{display:flex;flex-direction:column}
+  .hero-mobile .btn{order:3;position:relative;z-index:2;align-self:flex-start;margin:-92px 0 40px 20px}
+  .m-photo{order:2;margin-top:-70px}
+  .m-topics{order:4;margin-top:0;padding-top:14px}
+}
+@media (max-width:1023px){
+  /* вертикальные фото на телефоне — квадратнее, как в эскизе: кадр по лицу */
+  #about .photo{aspect-ratio:1/1;object-fit:cover;object-position:50% 12%}
+  #requests-2 .photo{aspect-ratio:5/4;object-fit:cover;object-position:50% 70%}
+  #how .photo{aspect-ratio:1/1;object-fit:cover;object-position:50% 45%}
+}
+@media (max-width:1023px){
+  /* заголовки сжаты по ширине (scaleX), но браузер считает их ширину до сжатия — не даём им раздвигать страницу */
+  .screen{overflow-x:clip}
+  .faq-head{grid-template-columns:minmax(0,1fr) 46%}
+}
+@media (max-width:1023px){.title{font-size:clamp(40px,11.2vw,96px)}}
