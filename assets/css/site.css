@@ -72,14 +72,14 @@ a{color:inherit}
 
 /* форма поверх экрана 9: поля по рамкам из макета */
 .form-ui{position:absolute;inset:0;pointer-events:none}
-.form-ui input,.form-ui textarea,.form-ui button{position:absolute;pointer-events:auto;font:400 calc(var(--u) * 21) var(--serif);color:var(--ink);background:transparent;border:0;outline-offset:0}
+.form-ui input,.form-ui textarea,.form-ui button{position:absolute;pointer-events:auto;font:400 calc(var(--u) * 24) var(--serif);color:var(--ink);background:transparent;border:0;outline-offset:0}
 .form-ui input,.form-ui textarea{padding:0 calc(var(--u) * 24)}
 .form-ui ::placeholder{color:var(--ink);opacity:1}
 .form-ui :focus::placeholder{opacity:.4}
 .f-email{left:calc(var(--u) * 777);top:calc(var(--u) * 389);width:calc(var(--u) * 552);height:calc(var(--u) * 56)}
 .f-name{left:calc(var(--u) * 777);top:calc(var(--u) * 466);width:calc(var(--u) * 552);height:calc(var(--u) * 54)}
 .f-comment{left:calc(var(--u) * 777);top:calc(var(--u) * 541);width:calc(var(--u) * 552);height:calc(var(--u) * 134);resize:none;line-height:1.5}
-.form-ui .f-comment{padding-top:calc(var(--u) * 18)}   /* сильнее общего .form-ui textarea{padding:0 …} */
+.form-ui .f-comment{padding-top:calc(var(--u) * 26)}   /* сильнее общего .form-ui textarea{padding:0 …} */
 .f-send{left:calc(var(--u) * 778);top:calc(var(--u) * 699);width:calc(var(--u) * 550);height:calc(var(--u) * 70);border-radius:calc(var(--u) * 40);cursor:pointer;color:transparent!important}
 .f-send:hover{background:rgba(255,255,255,.08)}
 .f-status{position:absolute;left:calc(var(--u) * 778);top:calc(var(--u) * 776);width:calc(var(--u) * 550);font:400 calc(var(--u) * 17)/1.3 var(--serif);color:var(--red)}
@@ -251,10 +251,10 @@ a{color:inherit}
   #contact .form-ui{position:absolute;left:50%;top:0;bottom:auto;width:min(100cqw,520px);height:0;margin:0;padding:0;transform:translateX(-50%);display:block;max-width:none;pointer-events:none}
   #contact .form-ui>*{pointer-events:auto}
   #contact .form-ui input,#contact .form-ui textarea,#contact .form-ui button{position:absolute;border:0;border-radius:0;background:transparent;box-shadow:none;max-width:none;
-    font:400 calc(var(--mm)*21) var(--serif);color:var(--ink);padding:0 calc(var(--mm)*24)}
+    font:400 calc(var(--mm)*27) var(--serif);color:var(--ink);padding:0 calc(var(--mm)*24)}
   #contact .f-email{left:calc(var(--mm)*57);top:calc(var(--mm)*485);width:calc(var(--mm)*554);height:calc(var(--mm)*59)}
   #contact .f-name{left:calc(var(--mm)*57);top:calc(var(--mm)*562);width:calc(var(--mm)*554);height:calc(var(--mm)*57)}
-  #contact .f-comment{left:calc(var(--mm)*58);top:calc(var(--mm)*636);width:calc(var(--mm)*553);height:calc(var(--mm)*137);min-height:0;padding-top:calc(var(--mm)*16);resize:none}
+  #contact .form-ui .f-comment{left:calc(var(--mm)*58);top:calc(var(--mm)*636);width:calc(var(--mm)*553);height:calc(var(--mm)*137);min-height:0;padding-top:calc(var(--mm)*28);resize:none}
   #contact .f-send{left:calc(var(--mm)*60);top:calc(var(--mm)*796);width:calc(var(--mm)*551);height:calc(var(--mm)*71);border-radius:calc(var(--mm)*36)!important;color:transparent!important;background:transparent!important;padding:0}
   #contact .f-status{position:absolute;left:calc(var(--mm)*60);top:calc(var(--mm)*872);width:calc(var(--mm)*551);font-size:calc(var(--mm)*20)}
   #contact .form-ui [aria-invalid="true"]{box-shadow:inset 0 0 0 2px var(--red)}
