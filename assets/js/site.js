@@ -28,6 +28,10 @@
     }
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  // клик мимо окошка меню (по затемнению) закрывает его
+  document.addEventListener('click', function (e) {
+    if (root.classList.contains('menu-open') && !menu.contains(e.target) && !e.target.closest('.menu-toggle, .m-burger, .m-burger-hit')) setOpen(false);
+  });
 
   if ('IntersectionObserver' in window && hero) {
     new IntersectionObserver(function (entries) {
