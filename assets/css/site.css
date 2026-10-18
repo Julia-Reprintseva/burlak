@@ -196,7 +196,7 @@ a{color:inherit}
 @media (max-width:1023px){.site-foot{flex-direction:column;align-items:flex-start;padding:22px 20px 28px;font-size:13px}}
 
 /* экраны 1–8 из файла дизайнера: живой текст поверх картинки (build_ai.py) */
-.art .live text{font-kerning:normal}
+.art .live text{font-kerning:none}   /* ширина строк считается без кернинга (build_ai.natural_width) */
 .art .live tspan[font-family*="Roboto"]{font-stretch:75%}
 
 /* экраны встык: картинки с дробной высотой иначе дают щель в долю пикселя между экранами */
@@ -227,7 +227,7 @@ a{color:inherit}
   .m-block,.site-foot{display:none}
   .m-art-wrap{max-width:520px;margin:0 auto}
   .m-art{display:block;width:100%;height:auto}
-  .m-art .live text{font-kerning:normal}
+  .m-art .live text{font-kerning:none}
   .m-art .live tspan[font-family*="Roboto"]{font-stretch:75%}
   .m-art .hit{fill:transparent;transition:fill .25s}
   .m-art a:active .hit,.m-art a:hover .hit{fill:rgba(25,20,21,.13)}
