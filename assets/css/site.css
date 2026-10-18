@@ -238,10 +238,14 @@ a{color:inherit}
   /* «Частые вопросы»: между двумя частями картинки, линии и шрифты как в макете */
   #faq .faq-ui{position:static;width:min(100cqw,520px);height:auto;max-width:none;margin:0 auto;overflow:visible;
     padding:0 calc(var(--mm)*31) 0 calc(var(--mm)*41);background:#f5f5eb;font-size:calc(var(--mm)*28);line-height:1.4}
-  #faq .faq-ui details{border:0;border-top:calc(var(--mm)*4) solid #121210;border-radius:0;margin:0;background:none;padding:calc(var(--mm)*20) 0 calc(var(--mm)*22)}
-  #faq .faq-ui details:last-child{border-bottom:calc(var(--mm)*5) solid #121210}
+  /* линии и плюсы — рисованные штрихи дизайнера (build_mobile.faq_drawings) */
+  #faq .faq-ui details{border:0;border-radius:0;margin:0;padding:calc(var(--mm)*22) 0 calc(var(--mm)*22);
+    background:url(../img/draw/faq-line.png) 0 0/100% calc(var(--mm)*6) no-repeat}
+  #faq .faq-ui details:last-child{border:0;background:url(../img/draw/faq-line.png) 0 0/100% calc(var(--mm)*6) no-repeat,
+    url(../img/draw/faq-line.png) 0 100%/100% calc(var(--mm)*6) no-repeat}
   #faq .faq-ui summary{font:700 calc(var(--mm)*38)/1.15 var(--serif)}
-  #faq .faq-ui summary::after{font:400 calc(var(--mm)*54)/1 var(--serif)}
+  #faq .faq-ui summary::after{content:"";flex:none;width:calc(var(--mm)*39);height:calc(var(--mm)*31);background:url(../img/draw/faq-plus.png) center/contain no-repeat}
+  #faq .faq-ui details[open] summary::after{content:"";height:calc(var(--mm)*31);background:url(../img/draw/faq-minus.png) center/100% calc(var(--mm)*5) no-repeat}
   #faq .faq-ui p{margin-top:calc(var(--mm)*10)}
   #faq .faq-ui details>:last-child{margin-bottom:calc(var(--mm)*6)}
   #faq .faq-ui .faq-list{margin-top:calc(var(--mm)*10)}
