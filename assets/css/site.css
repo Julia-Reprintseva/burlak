@@ -237,10 +237,10 @@ a{color:inherit}
 
   /* «Частые вопросы»: между двумя частями картинки, линии и шрифты как в макете */
   #faq .faq-ui{position:static;width:min(100cqw,520px);height:auto;max-width:none;margin:0 auto;overflow:visible;
-    padding:0 calc(var(--mm)*31) 0 calc(var(--mm)*41);background:#f5f5eb;font-size:calc(var(--mm)*21.7);line-height:1.32}
+    padding:0 calc(var(--mm)*31) 0 calc(var(--mm)*41);background:#f5f5eb;font-size:calc(var(--mm)*28);line-height:1.4}
   #faq .faq-ui details{border:0;border-top:calc(var(--mm)*4) solid #121210;border-radius:0;margin:0;background:none;padding:calc(var(--mm)*20) 0 calc(var(--mm)*22)}
   #faq .faq-ui details:last-child{border-bottom:calc(var(--mm)*5) solid #121210}
-  #faq .faq-ui summary{font:700 calc(var(--mm)*36)/1.15 var(--serif)}
+  #faq .faq-ui summary{font:700 calc(var(--mm)*38)/1.15 var(--serif)}
   #faq .faq-ui summary::after{font:400 calc(var(--mm)*54)/1 var(--serif)}
   #faq .faq-ui p{margin-top:calc(var(--mm)*10)}
   #faq .faq-ui details>:last-child{margin-bottom:calc(var(--mm)*6)}
@@ -270,4 +270,8 @@ a{color:inherit}
   .menu-open{overflow:visible}
   .menu-toggle{top:18px;right:18px;width:44px;height:44px}
   .menu-open::after{content:"";position:fixed;inset:0;z-index:39;background:rgba(17,19,16,.35)}
+}
+@media (max-width:1023px){
+  .m-art .foot-u{stroke:#fff;stroke-width:2;opacity:.6}
+  .m-art a:hover~.foot-u{opacity:1}
 }
