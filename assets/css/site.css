@@ -283,8 +283,8 @@ a{color:inherit;-webkit-tap-highlight-color:transparent}   /* без синей 
   .menu-open .menu-toggle{opacity:0;visibility:hidden}
   .menu-open::after{content:"";position:fixed;inset:0;z-index:39;background:rgba(17,19,16,.35)}
 }
-}
 @media (max-width:1023px){
-  .m-art .foot-u{stroke:#fff;stroke-width:2;opacity:.6}
+  /* подчёркнутые имена в подвале — видно, что это ссылки */
+  .m-art .foot-u{stroke:#fff;stroke-width:2.5;opacity:.75}
   .m-art a:hover~.foot-u{opacity:1}
 }
