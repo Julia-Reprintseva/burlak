@@ -19,6 +19,7 @@
   menu.addEventListener('click', function (e) {
     var link = e.target.closest('a[href^="#"]');
     if (!link) return;
+    if (link.getAttribute('href') === '#close') { e.preventDefault(); setOpen(false); return; }
     var target = document.querySelector(link.getAttribute('href'));
     e.preventDefault();
     setOpen(false);
