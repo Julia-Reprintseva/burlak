@@ -287,6 +287,10 @@ a{color:inherit;-webkit-tap-highlight-color:transparent}   /* без синей 
 @media (max-width:1023px){
   /* подчёркнутые имена в подвале — видно, что это ссылки */
   .m-art .foot-u{stroke:#fff;stroke-width:2.5;opacity:.75}
-  .m-art .m-copy{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:300;fill:#8f8a80;letter-spacing:.04em}
+  /* подвал как на компьютере: копирайт и подписи светлые, имена белые */
+  .m-art .m-copy,.m-art .m-foot-l,.m-art .m-foot-n{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:400}
+  .m-art .m-copy{letter-spacing:.04em}
+  .m-art .m-copy,.m-art .m-foot-l{fill:#a9a497}
+  .m-art .m-foot-n{fill:#fff}
   .m-art a:hover~.foot-u{opacity:1}
 }
