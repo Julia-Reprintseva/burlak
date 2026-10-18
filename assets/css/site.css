@@ -191,6 +191,7 @@ a{color:inherit;-webkit-tap-highlight-color:transparent}   /* без синей 
   position:relative;z-index:4;margin-top:-6px;padding:18px max(44px,calc(var(--u, 1px) * 95)) 26px;border-top:1px solid #2a2a27;
   font:400 14px/1.4 Oswald,"Arial Narrow",sans-serif;text-transform:uppercase;letter-spacing:.06em}
 .site-foot p{margin:0}
+.site-foot .sf-own{font-size:.82em;color:#7f7a71}   /* копирайт мельче и светлее авторов */
 .site-foot a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
 .site-foot a:hover{color:#f2c14e;border-color:#f2c14e}
 @media (max-width:1023px){.site-foot{flex-direction:column;align-items:flex-start;padding:22px 20px 28px;font-size:13px}}
@@ -286,5 +287,6 @@ a{color:inherit;-webkit-tap-highlight-color:transparent}   /* без синей 
 @media (max-width:1023px){
   /* подчёркнутые имена в подвале — видно, что это ссылки */
   .m-art .foot-u{stroke:#fff;stroke-width:2.5;opacity:.75}
+  .m-art .m-copy{font-family:Oswald,"Arial Narrow",sans-serif;font-weight:300;fill:#8f8a80;letter-spacing:.04em}
   .m-art a:hover~.foot-u{opacity:1}
 }
