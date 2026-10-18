@@ -14,7 +14,7 @@
   --serif:"Old Standard TT",Georgia,serif; --sans:Oswald,"Arial Narrow",sans-serif; --hand:Caveat,cursive;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;overflow-x:clip}
+html{scroll-behavior:smooth;overflow-x:clip;-webkit-text-size-adjust:100%;text-size-adjust:100%}   /* телефон не увеличивает текст сам: живой текст стоит по координатам макета */
 body{background:var(--cream) url(../img/paper/cream.webp) 0 0/800px;color:var(--ink);font:19px/1.55 var(--serif)}
 img{max-width:100%}
 svg[width="0"]{position:absolute;width:0;height:0;overflow:hidden}   /* скрытые библиотеки рисунков не раздвигают страницу */
