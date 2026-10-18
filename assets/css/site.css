@@ -219,124 +219,41 @@ a{color:inherit}
 /* меню поверх тёмного фото (экран «Обо мне») — светлая обводка букв */
 .art .head-halo text{stroke:#f8f5ee;stroke-width:3.5px;stroke-linejoin:round;paint-order:stroke}
 
-/* ===== телефон по эскизу дизайнера (от дизайнера/мобильная версия — эскиз (16.10).jpeg) =====
-   Каждый раздел — карточка шириной 390 «точек эскиза» (--k = одна точка): фото, бумага, рисунки и записки
-   стоят по координатам эскиза (--x, --y, --w, --h, --r — поворот), длинный текст течёт внутри. */
-.m-logo{display:inline-block;text-decoration:none;color:var(--ink)}
-.m-ico{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+/* ===== телефон: экраны из мобильного макета дизайнера (build_mobile.py) =====
+   Картинка экрана + живой текст поверх (как на компьютере). --mm — одна точка макета шириной 699. */
 @media (max-width:1023px){
-  body{font-size:16px}
   .screen{overflow-x:clip}
   .screen:not(#top){padding:0}
-  .m-block{display:none}
-  .mc{--k:calc(min(100cqw,520px) / 390);position:relative;width:min(100cqw,520px);margin:0 auto;padding-bottom:calc(var(--k)*28)}
-  .mc *{box-sizing:border-box}
-
-  /* шапка каждой карточки: имя слева, три линии меню справа */
-  .m-top{display:flex;justify-content:space-between;align-items:flex-start;padding:calc(var(--k)*14) calc(var(--k)*22) calc(var(--k)*8) calc(var(--k)*26);position:relative;z-index:5}
-  .m-logo b{display:block;font:700 calc(var(--k)*19)/1 var(--serif);letter-spacing:.03em;text-transform:uppercase}
-  .m-logo small{display:block;font:400 calc(var(--k)*10.5)/1 var(--serif);letter-spacing:.14em;text-transform:uppercase;margin-top:calc(var(--k)*7);color:#333}
-  .m-burger{width:calc(var(--k)*30);height:calc(var(--k)*24);border:0;background:none;display:grid;align-content:space-between;padding:calc(var(--k)*3) 0;cursor:pointer;margin-top:calc(var(--k)*4)}
-  .m-burger i{display:block;height:2px;background:var(--ink)}
+  .m-block,.site-foot{display:none}
+  .m-art-wrap{max-width:520px;margin:0 auto}
+  .m-art{display:block;width:100%;height:auto}
+  .m-art .live text{font-kerning:normal}
+  .m-art .live tspan[font-family*="Roboto"]{font-stretch:75%}
+  .m-art .hit{fill:transparent;transition:fill .25s}
+  .m-art a:active .hit,.m-art a:hover .hit{fill:rgba(25,20,21,.13)}
   .menu-toggle{opacity:0;visibility:hidden}
   .menu-open .menu-toggle{opacity:1;visibility:visible}
+  #faq,#contact{--mm:calc(min(100cqw,520px) / 699)}
 
-  /* сцена: всё внутри по координатам эскиза */
-  .stage{position:relative;height:calc(var(--k)*var(--h))}
-  .stage>*,.col-art>*,.foot-papers>*,.ph-float>*{position:absolute;left:calc(var(--k)*var(--x,0));top:calc(var(--k)*var(--y,0))}
-  .pp,.ph,.note-paper,.dr,.sun,.brush,.line{width:calc(var(--k)*var(--w));transform:rotate(calc(var(--r,0)*1deg))}
-  .pp,.ph,.note-paper{height:calc(var(--k)*var(--h))}
-  .pp{clip-path:polygon(0 6%,8% 0,20% 4%,34% 0,48% 5%,62% 1%,76% 4%,90% 0,100% 5%,97% 30%,100% 55%,96% 80%,100% 96%,86% 100%,70% 95%,55% 100%,40% 96%,25% 100%,10% 95%,0 100%,3% 72%,0 48%,3% 24%)}
-  .pp.red{background:var(--red) url(../img/paper/red.webp) center/cover}
-  .pp.blue{background:var(--blue) url(../img/paper/blue.webp) center/cover}
-  .pp.yellow{background:var(--yellow) url(../img/paper/yellow.webp) center/cover}
-  .pp.beige{background:#e9e2d3 url(../img/paper/cream.webp) center/260px;filter:sepia(.25)}
-  .sun{aspect-ratio:1;border-radius:50%;background:#f3a73b url(../img/paper/yellow.webp) center/cover;background-blend-mode:multiply}
-  .brush{height:calc(var(--k)*16);background:var(--yellow);clip-path:polygon(0 60%,10% 30%,30% 20%,55% 10%,80% 5%,100% 0,98% 40%,75% 55%,50% 70%,25% 85%,4% 100%)}
-  .line{height:2px;background:var(--ink);border-radius:2px;transform:rotate(-2deg)}
-  .dr{height:auto}
-  .ph{overflow:hidden}
-  .ph img{position:absolute;left:calc(var(--k)*var(--il));top:calc(var(--k)*var(--it));width:calc(var(--k)*var(--iw));max-width:none;height:auto}
-  .ph.torn{clip-path:polygon(1% 3%,20% 0,45% 3%,70% 0,99% 2%,97% 30%,100% 60%,98% 98%,70% 100%,40% 97%,15% 100%,0 98%,2% 60%,0 30%)}
-  .ph.torn-t{clip-path:polygon(0 4%,12% 1%,26% 5%,40% 0,55% 4%,70% 1%,85% 5%,100% 2%,100% 100%,0 100%)}
-  .ph.torn-l{clip-path:polygon(6% 0,100% 0,100% 100%,4% 100%,0 85%,5% 70%,1% 55%,6% 40%,2% 25%,5% 12%)}
-  .ph.torn-r{clip-path:polygon(0 0,95% 0,100% 12%,94% 25%,99% 40%,93% 55%,98% 70%,92% 85%,97% 100%,0 100%)}
-  .note-paper{display:flex;align-items:center;justify-content:center;text-align:center;z-index:3;filter:drop-shadow(0 2px 3px rgba(0,0,0,.12))}
-  .note-paper::before{content:"";position:absolute;inset:0;z-index:-1;clip-path:polygon(0 4%,10% 0,25% 3%,40% 0,55% 3%,70% 0,85% 3%,100% 0,98% 30%,100% 60%,97% 100%,80% 97%,60% 100%,40% 97%,20% 100%,0 97%,3% 65%,0 35%)}
-  .note-paper.yellow::before{background:var(--yellow) url(../img/paper/yellow.webp) center/cover}
-  .note-paper.red::before{background:var(--red) url(../img/paper/red.webp) center/cover}
-  .note-paper.blue::before{background:var(--blue) url(../img/hero/09-blue-note.webp) center/cover}
-  .hand{font:400 calc(var(--k)*var(--fs))/1.05 var(--hand);color:var(--ink);padding:calc(var(--k)*8)}
-  .note-paper.red .hand{color:#1b1210}
+  /* «Частые вопросы»: между двумя частями картинки, линии и шрифты как в макете */
+  #faq .faq-ui{position:static;width:min(100cqw,520px);height:auto;max-width:none;margin:0 auto;overflow:visible;
+    padding:0 calc(var(--mm)*31) 0 calc(var(--mm)*41);background:#f5f5eb;font-size:calc(var(--mm)*21.7);line-height:1.32}
+  #faq .faq-ui details{border:0;border-top:calc(var(--mm)*4) solid #121210;border-radius:0;margin:0;background:none;padding:calc(var(--mm)*20) 0 calc(var(--mm)*22)}
+  #faq .faq-ui details:last-child{border-bottom:calc(var(--mm)*5) solid #121210}
+  #faq .faq-ui summary{font:700 calc(var(--mm)*36)/1.15 var(--serif)}
+  #faq .faq-ui summary::after{font:400 calc(var(--mm)*54)/1 var(--serif)}
+  #faq .faq-ui p{margin-top:calc(var(--mm)*10)}
+  #faq .faq-ui details>:last-child{margin-bottom:calc(var(--mm)*6)}
+  #faq .faq-ui .faq-list{margin-top:calc(var(--mm)*10)}
 
-  /* заголовки и текст */
-  .mc .title{font:700 calc(var(--k)*var(--fs))/.94 var(--serif);text-transform:uppercase;margin:0;white-space:nowrap}
-  .stage>.title{left:calc(var(--k)*var(--x,26))}
-  .mc .title span{display:block;transform:scaleX(.72);transform-origin:left}
-  .txt{padding:0 calc(var(--k)*26);position:relative;z-index:2;width:calc(var(--k)*(var(--w,390)))}
-  .txt .title{margin-bottom:calc(var(--k)*10)}
-  .t-body{font-size:calc(var(--k)*13.4);line-height:1.5;margin-top:calc(var(--k)*10)}
-  .t-body.small{font-size:calc(var(--k)*12.4)}
-  .mc .lead{position:absolute;font-size:calc(var(--k)*14.2);line-height:1.38;width:calc(var(--k)*var(--w))}
-  .mc .btn{gap:calc(var(--k)*20);padding:calc(var(--k)*11) calc(var(--k)*26);font-size:calc(var(--k)*15);z-index:4}
-  .mc .btn-note{font-size:calc(var(--k)*15)}
-  .mc mark{background:linear-gradient(transparent 15%,rgba(252,204,111,.8) 15%,rgba(252,204,111,.8) 85%,transparent 85%);color:inherit}
-
-  /* первый экран */
-  .hero-mobile .m-title{position:absolute;left:calc(var(--k)*30);top:calc(var(--k)*var(--y));z-index:3;padding:0;font:700 calc(var(--k)*54)/.95 var(--serif);text-transform:uppercase}
-  .hero-mobile .m-title span{transform:scaleX(.72)}
-  .hero-mobile .stage>.btn{position:absolute;margin:0}
-  .hero-mobile .m-topics{left:0;top:calc(var(--k)*560);width:100%;height:calc(var(--k)*100);margin:0;display:grid;grid-template-columns:36% 30% 34%;align-content:center;gap:calc(var(--k)*10) 0;padding:calc(var(--k)*20) calc(var(--k)*20) calc(var(--k)*8) calc(var(--k)*30);font-size:calc(var(--k)*13);background:#111;clip-path:polygon(0 8%,15% 2%,30% 7%,48% 1%,64% 6%,80% 0,100% 5%,100% 100%,0 100%);z-index:4}
-  .hero-mobile .m-top{position:absolute;inset:0 0 auto;z-index:6}
-  .hero-mobile .stage{top:0}
-
-  /* «С чем я работаю»: фото слева, темы справа */
-  .cols{display:grid;grid-template-columns:calc(var(--k)*164) 1fr;margin-top:calc(var(--k)*8);min-height:calc(var(--k)*470)}
-  .col-art{position:relative}
-  .topics.sk{list-style:none;padding-right:calc(var(--k)*12)}
-  .topics.sk li{display:grid;grid-template-columns:calc(var(--k)*62) 1fr;gap:calc(var(--k)*8);margin:0 0 calc(var(--k)*18)}
-  .topics.sk .icon{width:100%;margin:0;float:none}
-  .topics.sk h3{font:700 calc(var(--k)*14)/1.25 var(--serif);margin:0 0 calc(var(--k)*4);min-height:0}
-  .topics.sk p{font-size:calc(var(--k)*11.6);line-height:1.38;color:#3d3a35;margin:0}
-  .topics.sk.big{padding:calc(var(--k)*6) calc(var(--k)*16) calc(var(--k)*10) calc(var(--k)*26)}
-  .topics.sk.big li{grid-template-columns:calc(var(--k)*72) 1fr;gap:calc(var(--k)*20);margin-bottom:calc(var(--k)*22)}
-  .topics.sk.big h3{font-size:calc(var(--k)*15.5)}
-  .topics.sk.big p{font-size:calc(var(--k)*13.4)}
-  .foot-papers{position:relative;height:calc(var(--k)*30)}
-
-  /* «Как я работаю»: методы 2×2, значок слева */
-  .methods.sk{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--k)*16) calc(var(--k)*10);margin:calc(var(--k)*16) 0 calc(var(--k)*4)}
-  .methods.sk li{display:grid;grid-template-columns:calc(var(--k)*50) 1fr;gap:calc(var(--k)*6);align-items:start}
-  .methods.sk .icon{width:100%}
-  .methods.sk p{font-size:calc(var(--k)*11.4);line-height:1.3;margin:0}
-
-  /* «Образование»: записка, список слева, фото справа */
-  .note-paper.inline{position:relative;left:calc(var(--k)*33);margin:calc(var(--k)*10) 0 calc(var(--k)*14)}
-  .edu{padding:0 calc(var(--k)*16) 0 calc(var(--k)*26)}
-  .ph-float{float:right;position:relative;width:calc(var(--k)*176);height:calc(var(--k)*320);margin:0 calc(var(--k)*-16) calc(var(--k)*10) calc(var(--k)*10)}
-  .edu .timeline{list-style:none}
-  .edu .timeline li{display:flow-root;border-left:2px solid var(--yellow);padding-left:calc(var(--k)*9);margin:0 0 calc(var(--k)*12)}
-  .edu .timeline .y{font:400 calc(var(--k)*12.5) var(--sans)}
-  .edu .timeline h3{font:700 calc(var(--k)*12.6)/1.25 var(--serif);margin:calc(var(--k)*2) 0}
-  .edu .timeline p{font-size:calc(var(--k)*11.2);line-height:1.35;color:#3d3a35}
-  .mc-edu::after{content:"";display:block;clear:both}
-
-  /* «Частые вопросы»: вопросы в рамках */
-  #faq .faq-ui{max-width:520px;padding:0 calc(min(100vw,520px)/390*25)}
-  .faq-ui details{border:1.5px solid var(--ink);border-radius:7px;padding:7px 12px;margin-bottom:7px;background:rgba(255,255,255,.35)}
-  .faq-ui details:last-child{border-bottom:1.5px solid var(--ink)}
-  .faq-ui summary{font:400 14px/1.3 var(--serif)}
-  .faq-ui summary::after{font-size:24px}
-  .faq-ui details>:last-child{margin-bottom:6px}
-  .mc-faq-btn{padding:20px 0 30px calc(min(100vw,520px)/390*25)}
-
-  /* «Запись»: поля формы по эскизу */
-  #contact .form-ui{max-width:520px;padding:0 calc(min(100vw,520px)/390*26);gap:9px}
-  .form-ui input,.form-ui textarea{border-width:1.5px;border-radius:7px;padding:7px 12px;font-size:13px;max-width:280px}
-  .form-ui textarea{min-height:36px;height:36px}
-  .form-ui .f-send{max-width:280px;padding:12px 18px;font-size:14px!important}
-  .mc-mail{padding:6px 0 30px calc(min(100vw,520px)/390*30)}
-  .mc-mail .m-mail{display:flex;align-items:center;gap:12px;font-size:14px;margin-top:10px}
-  .mc-mail .m-mail a{text-decoration:none;border-bottom:1px solid rgba(19,19,19,.35)}
-  .mc-mail .dr{position:absolute;left:calc(var(--k)*var(--x));top:calc(var(--k)*var(--y))}
+  /* «Запись»: поля поверх рамок, нарисованных в картинке */
+  #contact .form-ui{position:absolute;left:50%;top:0;width:min(100cqw,520px);height:auto;margin:0;padding:0;transform:translateX(-50%);display:block;max-width:none}
+  #contact .form-ui input,#contact .form-ui textarea,#contact .form-ui button{position:absolute;border:0;border-radius:0;background:transparent;box-shadow:none;max-width:none;
+    font:400 calc(var(--mm)*21) var(--serif);color:var(--ink);padding:0 calc(var(--mm)*24)}
+  #contact .f-email{left:calc(var(--mm)*57);top:calc(var(--mm)*485);width:calc(var(--mm)*554);height:calc(var(--mm)*59)}
+  #contact .f-name{left:calc(var(--mm)*57);top:calc(var(--mm)*562);width:calc(var(--mm)*554);height:calc(var(--mm)*57)}
+  #contact .f-comment{left:calc(var(--mm)*58);top:calc(var(--mm)*636);width:calc(var(--mm)*553);height:calc(var(--mm)*137);min-height:0;padding-top:calc(var(--mm)*16);resize:none}
+  #contact .f-send{left:calc(var(--mm)*60);top:calc(var(--mm)*796);width:calc(var(--mm)*551);height:calc(var(--mm)*71);border-radius:calc(var(--mm)*36)!important;color:transparent!important;background:transparent!important;padding:0}
+  #contact .f-status{position:absolute;left:calc(var(--mm)*60);top:calc(var(--mm)*872);width:calc(var(--mm)*551);font-size:calc(var(--mm)*20)}
+  #contact .form-ui [aria-invalid="true"]{box-shadow:inset 0 0 0 2px var(--red)}
 }
