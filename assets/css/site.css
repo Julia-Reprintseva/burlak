@@ -18,7 +18,7 @@ html{scroll-behavior:smooth;overflow-x:clip;-webkit-text-size-adjust:100%;text-s
 body{background:var(--cream) url(../img/paper/cream.webp) 0 0/800px;color:var(--ink);font:19px/1.55 var(--serif)}
 img{max-width:100%}
 svg[width="0"]{position:absolute;width:0;height:0;overflow:hidden}   /* скрытые библиотеки рисунков не раздвигают страницу */
-a{color:inherit}
+a{color:inherit;-webkit-tap-highlight-color:transparent}   /* без синей подсветки нажатия на iPhone */
 :focus-visible{outline:3px solid var(--red);outline-offset:3px}
 .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -272,10 +272,11 @@ a{color:inherit}
   .menu-card{display:block;width:100%;height:auto;filter:drop-shadow(0 14px 30px rgba(0,0,0,.25))}
   .menu .menu-card a{transform:none;font:inherit;white-space:normal}
   .menu-card .card{fill:#f6f4eb}
-  .menu-card .pill{fill:transparent;stroke:#000;stroke-width:2px;stroke-miterlimit:10;transition:fill .15s}
-  .menu-card text{font:400 29.6px Oswald,"Arial Narrow",sans-serif;fill:#231f20;transition:fill .15s}
-  .menu-card .mi:hover .pill,.menu-card .mi:active .pill,.menu-card .mi:focus-visible .pill{fill:#000}
-  .menu-card .mi:hover text,.menu-card .mi:active text,.menu-card .mi:focus-visible text{fill:#fff}
+  /* пункт без обводки; при наведении (на телефоне — при нажатии) появляется рисованная обводка — так задумала дизайнер */
+  .menu-card .pill{fill:transparent;stroke:#000;stroke-width:2px;stroke-miterlimit:10;opacity:0;transition:opacity .15s}
+  .menu-card text{font:400 29.6px Oswald,"Arial Narrow",sans-serif;fill:#231f20}
+  .menu-card .mi:hover .pill,.menu-card .mi:active .pill,.menu-card .mi:focus-visible .pill{opacity:1}
+  .menu-card a{-webkit-tap-highlight-color:transparent;outline:none}
   .menu-card .ring{fill:none;stroke:#000;stroke-width:2px}
   .menu-card .cross{fill-rule:evenodd;stroke:#000;stroke-width:2px}
   .menu-open{overflow:visible}
