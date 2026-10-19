@@ -61,7 +61,7 @@
   var status = form.querySelector('.f-status');
   var send = form.querySelector('.f-send');
   var TO = 'ekaterinaburlak@gmail.com';
-  var FORM_ENDPOINT = '';
+  var FORM_ENDPOINT = 'https://formspree.io/f/mkjokaog';
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
